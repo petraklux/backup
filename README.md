@@ -38,3 +38,20 @@ volumes:
   open-webui:
 ```
 
+用winsw软件设置sing-box开机启动
+下载 WinSW-x64.exe到sing-box目录，然后重名为 winsw.exe  下载地址 https://github.com/winsw/winsw/releases
+在sing-box的目录下创建 winsw.xml 内容如下
+ ```
+<service>
+<id>sing-box</id>
+<name>sing-box</name>
+<description>This service runs sing-box continuous integration system.</description>
+<executable>D:\sing-box\sing-box.exe</executable>
+<arguments>run -c D:\sing-box\config.json</arguments>
+<log mode="reset"/>
+<onfailure action="restart"/>
+</service>
+```
+powershell里切换到sing-box目录下
+  ./winsw.exe install   
+  ./winsw.exe start   
