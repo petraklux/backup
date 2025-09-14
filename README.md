@@ -15,7 +15,7 @@ irm https://get.activated.win | iex
 修改mojave.xml文件，将其中的壁纸文件路径修改为指定文件夹壁纸路径
 在优化-外观-背景图像里选择mojave.xml文件即可。
 
-3、 安装Open WebUI  docker-compose.yml 文件
+3、 安装Open WebUI 编辑 docker-compose.yml 文件
 
  ```
 services:
