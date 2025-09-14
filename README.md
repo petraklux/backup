@@ -53,5 +53,7 @@ volumes:
 </service>
 ```
 powershell里切换到sing-box目录下
+```
   ./winsw.exe install   
   ./winsw.exe start   
+```
