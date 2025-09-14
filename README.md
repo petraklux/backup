@@ -39,7 +39,7 @@ volumes:
 ```
 
 4、用winsw软件设置sing-box开机启动
-下载 WinSW-x64.exe到sing-box目录，然后重名为 winsw.exe  下载[地址]（https://github.com/winsw/winsw/releases） 
+下载 WinSW-x64.exe到sing-box目录，然后重名为 winsw.exe  下载[地址](https://github.com/winsw/winsw/releases)
 在sing-box的目录下创建 winsw.xml 内容如下
  ```
 <service>
