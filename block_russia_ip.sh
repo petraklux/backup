@@ -2,8 +2,8 @@
 #与block_russia_ip.sh脚本放同一个文件夹下
 
 #运行脚本
-#chmod +x block_russia_ips.sh
-#sudo ./block_russia_ips.sh
+#chmod +x block_russia_ip.sh
+#sudo ./block_russia_ip.sh
 
 #!/bin/bash
 # 定义 IP 列表文件
