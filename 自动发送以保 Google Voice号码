@@ -1,0 +1,14 @@
+进入Google Apps Script，然后新建一个项目。New Project。在Code.gs里写入下面的代码：
+
+function send_message_to_keep_gv() {
+  var emailAddress = '1802287xxxx.1917765xxxx.Z9k3vD8Bd9@txt.voice.google.com'
+  var subject = 'Auto-sent保号';
+  var message = '每月20日自动发送以保 Google Voice号码。认真过好每一天!'
+
+  MailApp.sendEmail(emailAddress, subject, message);
+}
+
+
+编写完成后，点一下Run，测试成功就可以配置定时执行
+在左边的Trigger这里，Add New Trigger。
+可以设置为Time-driven的。比如我设置的就是每个月的20日执行一次
