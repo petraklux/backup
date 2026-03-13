@@ -1,0 +1,115 @@
+
+
+curl -fsSL https://get.docker.com |  sh
+
+systemctl enable --now  docker
+
+docker --version
+docker compose version
+
+Docker Compose v2 已经内置在 Docker CLI 中， docker-compose命令变成了 docker compose（空格）。
+
+
+
+# 在你的笔记本上运行：
+ssh -L 18789:127.0.0.1:18789 openclaw@140.245.88.90
+
+# 然后在浏览器访问 http://localhost:18789/
+
+配置文件位置  ~/.openclaw/openclaw.json
+
+"controlUi": {
+"allowInsecureAuth": true,
+"dangerouslyDisableDeviceAuth": true,
+"allowedOrigins": ["http://127.0.0.1:18789"
+]
+},
+
+
+# 在 Tailscale Admin Console (https://login.tailscale.com/admin/dns) 中：
+# 1. 启用 MagicDNS
+# 2. 启用 HTTPS Certificates
+
+
+
+ ~/.openclaw/openclaw.json — Tailscale Serve 配置
+
+
+
+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
+
+ You will find it at t.me/MlanchtonBot.Use this token to access the HTTP API:
+
+8090084533:AAHU8hO5lvMzqklzoVDajlWn4vjUDqKOy2s
+
+
+安装nodejs
+
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+
+
+sudo apt install nodejs
+
+node -v
+npm -v
+
+sudo npm install -g openclaw@latest
+
+openclaw onboard --install-daemon
+
+openclaw config set gateway.controlUi.allowedOrigins '[
+  "http://127.0.0.1:18789",
+  "http://localhost:18789",
+  "https://sgp.tail07d0e.ts.net"
+]'
+
+
+
+tailscale serve reset
+sudo tailscale serve --bg http://127.0.0.1:18789
+tailscale serve status
+
+通过以下命令管理 Hooks：
+boot-md	启动时加载引导信息
+command-logger	记录命令日志
+session-memory	保存会话上下文到记忆
+
+openclaw hooks list — 查看所有 Hooks
+openclaw hooks enable <name> — 启用
+openclaw hooks disable <name> — 禁用
+
+Gateway 守护进程	后台服务，负责连接 Slack 等渠道、接收和处理消息。没有界面，默默运行。	✅ 是（开机自动启动）
+
+命令	说明
+openclaw onboard	初始化配置向导（一站式完成所有配置）
+openclaw tui	打开终端聊天界面（TUI）
+openclaw dashboard	打开 Web 控制面板（浏览器聊天）
+openclaw doctor	诊断系统环境
+openclaw status	查看运行状态
+openclaw configure	修改配置（API Key、渠道等）
+openclaw update	更新到最新版本
+openclaw logs	查看运行日志
+openclaw hooks list	查看所有 Hooks
+openclaw hooks enable <name>	启用指定 Hook
+openclaw hooks disable <name>	禁用指定 Hook
+openclaw security audit --deep	深度安全审计
+openclaw daemon install	安装后台守护进程
+openclaw daemon uninstall	卸载后台守护进程
+
+
+手动 Docker Compose 部署
+# 1. 构建镜像
+docker build -t openclaw:local -f Dockerfile .
+
+# 2. 运行配置向导
+docker compose run --rm openclaw-cli onboard
+
+# 3. 启动 Gateway
+docker compose up -d openclaw-gateway
+
+# 4. 获取控制面板链接
+docker compose run --rm openclaw-cli dashboard --no-open
+
+# 5. 查看并授权设备
+docker compose run --rm openclaw-cli devices list
+docker compose run --rm openclaw-cli devices approve <requestId>
