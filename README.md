@@ -37,6 +37,25 @@ services:
 volumes:
   open-webui:
 ```
+nginx配置
+```
+    server {
+        listen 443 ssl ;
+        http2 on;
+        server_name cosimolux.com;
+
+        location / {
+            proxy_pass http://127.0.0.1:3001;
+
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            # CRITICAL: Disable buffering for SSE streaming
+            proxy_buffering off;
+            proxy_cache off;    
+        }
+    }
+```
 
 4、用winsw软件设置sing-box开机启动
 下载 WinSW-x64.exe到sing-box目录，然后重名为 winsw.exe  下载[地址](https://github.com/winsw/winsw/releases)
