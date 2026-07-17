@@ -22,27 +22,20 @@ services:
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
     container_name: open-webui
+
     ports:
       - "3001:8080"
-    environment:
-      - ENABLE_WEBSOCKET_SUPPORT=false
-      - ENABLE_MODEL_WHITELIST: "false"
 
     volumes:
-      - ~/openwebui:/app/backend/data
-    restart: always
-    network_mode: bridge
-    expose:
-      - "8080"
-volumes:
-  open-webui:
+      - ./data:/app/backend/data
+    restart: unless-stopped
 ```
 nginx配置
 ```
     server {
         listen 443 ssl ;
         http2 on;
-        server_name cosimolux.com;
+        server_name mydomain.com;
 
         location / {
             proxy_pass http://127.0.0.1:3001;
